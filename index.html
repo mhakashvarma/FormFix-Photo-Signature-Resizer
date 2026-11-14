@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Photo Fixer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h2>Form<span>Fix</span></h2>
+        <p>Photo & Signature Resizer</p>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <h1>Get Your Photo Ready for Any Form</h1>
+            <p>Resize, crop and compress your photo and signature easily.</p>
+        </section>
+
+        <section class="workspace">
+
+            <div class="panel">
+                <h2>1. Choose Form Preset</h2>
+
+                <label for="preset">Select a form</label>
+                <select id="preset">
+                    <option value="upsc">UPSC</option>
+                    <option value="ugc">UGC-NET</option>
+                    <option value="csir">CSIR-UGC NET</option>
+                    <option value="custom">Custom Preset</option>
+                </select>
+
+                <div class="preset-info">
+                    <p>Crop dimensions: <strong id="dimensions">3.5 × 3.5 cm</strong></p>
+                    <p>Photo file size: <strong id="fileLimit">20–300 KB</strong></p>
+                    <p>Signature file size: <strong id="signatureFileLimit">20–300 KB</strong></p>
+                    <p id="presetNote">Working crop dimensions; check the current official notice before applying.</p>
+                </div>
+
+                
+<div id="customFields" class="hidden">
+    <h3>Photo Settings</h3>
+
+    <label for="customWidth">Photo Crop Width (cm)</label>
+    <input type="number" id="customWidth" min="0.5" step="0.1" value="3.5">
+
+    <label for="customHeight">Photo Crop Height (cm)</label>
+    <input type="number" id="customHeight" min="0.5" step="0.1" value="4.5">
+
+    <label for="customLimit">Photo Maximum Size (KB)</label>
+    <input type="number" id="customLimit" min="1" value="50">
+
+    <h3>Signature Settings</h3>
+
+    <label for="signatureWidth">Signature Crop Width (cm)</label>
+    <input type="number" id="signatureWidth" min="0.5" step="0.1" value="4">
+
+    <label for="signatureHeight">Signature Crop Height (cm)</label>
+    <input type="number" id="signatureHeight" min="0.5" step="0.1" value="2">
+
+    <label for="signatureLimit">Signature Maximum Size (KB)</label>
+    <input type="number" id="signatureLimit" min="1" value="20">
+
+    <button id="applyCustom">Apply Custom Preset</button>
+</div>
+
+
+<div class="official-note">
+    <h3>Official Application Guidelines</h3>
+
+    <p>
+        Always verify the latest notification before uploading.
+    </p>
+
+    <ul>
+        <li>
+            <a href="https://upsconline.gov.in/OTRP/candidate/faq.php"
+               target="_blank" rel="noopener">
+                UPSC Official Guidelines
+            </a>
+        </li>
+
+        <li>
+            <a href="https://ugcnet.nta.ac.in/"
+               target="_blank" rel="noopener">
+                UGC-NET Official Website
+            </a>
+        </li>
+
+        <li>
+            <a href="https://csirnet.nta.ac.in/"
+               target="_blank" rel="noopener">
+                CSIR-NET Official Website
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+            </div>
+
+            <div class="panel">
+                <h2>2. Upload Photo</h2>
+                <label class="upload-box" for="photoInput">
+                    <span>📷</span>
+                    <strong>Choose Your Photo</strong>
+                    <small>JPG, PNG or WEBP</small>
+                </label>
+                <input type="file" id="photoInput" accept="image/*">
+
+                <div class="preview-area">
+                    <canvas id="photoCanvas"></canvas>
+                    <p id="photoStatus">No photo uploaded yet</p>
+                </div>
+
+
+<div class="crop-controls">
+    <h3>Photo Crop & Face Guide</h3>
+
+    <p>Zoom</p>
+    <input type="range" id="cropZoom"
+       min="1" max="2.5" step="0.05" value="1.5">
+
+    <p>Vertical Position</p>
+    <input type="range" id="cropPosition"
+           min="-100" max="100" value="0">
+
+    <div class="crop-preview">
+        <canvas id="cropPreviewCanvas"></canvas>
+    </div>
+
+    <small>Position your face inside the oval guide.</small>
+</div>
+
+            </div>
+
+            <div class="panel">
+                <h2>3. Upload Signature</h2>
+                <label class="upload-box" for="signatureInput">
+                    <span>✍️</span>
+                    <strong>Choose Your Signature</strong>
+                    <small>JPG, PNG or WEBP</small>
+                </label>
+                <input type="file" id="signatureInput" accept="image/*">
+
+                <div class="preview-area">
+                    <canvas id="signatureCanvas"></canvas>
+                    <p id="signatureStatus">No signature uploaded yet</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="panel result-panel">
+            <h2>4. Download Your Files</h2>
+            <p id="resultMessage">Upload your photo and signature to get started.</p>
+
+            <div class="actions">
+                <button id="processPhoto">Process Photo</button>
+                <button id="processSignature">Process Signature</button>
+            </div>
+
+            <div id="downloadArea"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>FormFix – Your Images, Ready for Applications.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
